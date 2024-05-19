@@ -1,0 +1,18 @@
+[project]
+name = "project-name"
+version = "0.1.0"
+requires-python = ">=3.9"
+description = "Project Description"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [ { email = "TBD@TBD", name = "TBD" }]
+maintainers = []
+keywords = []
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.urls]
+homepage = "https://github.com/TBD"
