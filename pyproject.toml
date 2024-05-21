@@ -31,3 +31,9 @@ homepage = "https://github.com/<TBD>"
 Documentation = "https://github.com/<TBD>"
 Repository = "https://github.com/<TBD>"
 Changelog = "https://github.com/<TBD>/blob/master/CHANGELOG.md"
+
+[project.scripts]
+cli-name = "module.cli:main"
+
+[tool.hatch.version]
+path = "src/module/__about__.py"
