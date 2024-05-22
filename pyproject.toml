@@ -3,13 +3,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "project-name"
+name = "module"
 requires-python = ">=3.9"
 description = "Project Description"
 license = { file = "LICENSE" }
 readme = {file = "README.md", content-type = "text/markdown"}
-authors = [ { email = "<TBD@>", name = "<TBD>" } ]
-maintainers = [ { email = "<TBD@>", name = "<TBD>" } ]
+authors = [ { email = "author@domain", name = "author" } ]
+maintainers = [ { email = "author@domain", name = "author" } ]
 keywords = []
 classifiers = [
     # https://pypi.org/classifiers/
@@ -27,13 +27,13 @@ dev = []
 test = []
 
 [project.urls]
-homepage = "https://github.com/<TBD>"
-Documentation = "https://github.com/<TBD>"
-Repository = "https://github.com/<TBD>"
-Changelog = "https://github.com/<TBD>/blob/master/CHANGELOG.md"
+homepage = "https://github.com/author/module"
+Documentation = "https://github.com/author/module"
+Repository = "https://github.com/author/module"
+#Changelog = "https://github.com/project-name/blob/master/CHANGELOG.md"
 
-[project.scripts]
-cli-name = "module.cli:main"
+# [project.scripts]
+# cli-name = "module.cli:main"
 
 [tool.hatch.version]
 path = "src/module/__about__.py"
