@@ -33,7 +33,7 @@ Repository = "https://github.com/author/module"
 #Changelog = "https://github.com/project-name/blob/master/CHANGELOG.md"
 
 # [project.scripts]
-# cli-name = "module.cli:main"
+# intro-cli = "module.intro:main"
 
 [tool.hatch.version]
 path = "src/module/__about__.py"
