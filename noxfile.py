@@ -8,6 +8,7 @@ import nox
 MODULE_NAME = "module"
 TESTS_PATH = "tests"
 DEFAULT_PYTHON_VERSION = "3.9"
+VERBOSE = True
 
 PYTHON_MATRIX = ["3.9", "3.10", "3.11", "3.12"]
 
@@ -27,24 +28,30 @@ CLEANABLE_TARGETS = [
 
 nox.options.sessions = [
     "tests",
+    "coverage",
+    "mypy_check",
 ]
 
 
 @nox.session(python=PYTHON_MATRIX)
 def tests(session: nox.Session) -> None:
-    """Run unit tests with coverage saved to partial file."""
-    print_standard_logs(session)
+    """Run unit tests."""
 
     session.install(".[test]")
-    session.run(
-        "pytest", "--cov-report", "term-missing", f"--cov={MODULE_NAME}", TESTS_PATH
-    )
+    session.run("pytest")
+
+
+@nox.session(python=DEFAULT_PYTHON_VERSION)
+def coverage(session: nox.Session) -> None:
+    """Run unit tests with coverage and output to terminal."""
+
+    session.install(".[test]")
+    session.run("pytest", "--cov-report", "term-missing", f"--cov={MODULE_NAME}", TESTS_PATH)
 
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def mypy_check(session: nox.Session) -> None:
     """Run mypy against package and all required dependencies."""
-    print_standard_logs(session)
 
     session.install(".")
     session.install("mypy")
@@ -54,7 +61,6 @@ def mypy_check(session: nox.Session) -> None:
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def build(session: nox.Session) -> None:
     """Build distribution files."""
-    print_standard_logs(session)
 
     session.install("build")
     session.run("hatch", "build")
@@ -80,10 +86,3 @@ def clean(_: nox.Session) -> None:
             count += 1
 
     print(f"{count} files cleaned.")
-
-
-def print_standard_logs(session: nox.Session) -> None:
-    """Reusable output for monitoring environment factors."""
-    version = session.run("python", "--version", silent=True)
-    session.log(f"Running from: {session.bin}")
-    session.log(f"Running with: {version}")
