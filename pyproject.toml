@@ -23,8 +23,8 @@ dynamic = ["version"]
 dependencies = []
 
 [project.optional-dependencies]
-dev = []
-test = []
+dev = ["black", "isort", "pylint", "mypy",  "bandit", "pre-commit"]
+test = ["nox", "pytest", "pytest-cov"]
 
 [project.urls]
 homepage = "https://github.com/author/module"
@@ -37,3 +37,9 @@ Repository = "https://github.com/author/module"
 
 [tool.hatch.version]
 path = "src/module/__about__.py"
+
+[tool.coverage.run]
+omit = ["__about__.py"]
+
+[tool.coverage.report]
+fail_under = 100
