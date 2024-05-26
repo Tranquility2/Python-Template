@@ -3,7 +3,7 @@
 import platform
 
 
-def main():
+def main() -> None:
     """Main function of the module."""
     print("Working!")
     print("Python version: ", platform.python_version())
