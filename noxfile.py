@@ -74,15 +74,17 @@ def install(session: nox.Session) -> None:
 
 
 @nox.session(python=False)
-def clean(_: nox.Session) -> None:
+def clean(session: nox.Session) -> None:
     """Clean cache, .pyc, .pyo, and test/build artifact files from project."""
     count = 0
     for searchpath in CLEANABLE_TARGETS:
         for filepath in pathlib.Path(".").glob(searchpath):
             if filepath.is_dir():
+                session.log(f"Removing directory: {filepath}")
                 shutil.rmtree(filepath)
             else:
+                session.log(f"Removing file: {filepath}")
                 filepath.unlink()
             count += 1
 
-    print(f"{count} files cleaned.")
+    session.log(f"{count} files cleaned.")
