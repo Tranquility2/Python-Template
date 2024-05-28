@@ -28,21 +28,12 @@ CLEANABLE_TARGETS = [
 
 nox.options.sessions = [
     "tests",
-    "coverage",
     "mypy_check",
 ]
 
 
-@nox.session(python=PYTHON_MATRIX)
-def tests(session: nox.Session) -> None:
-    """Run unit tests."""
-
-    session.install(".[test]")
-    session.run("pytest")
-
-
 @nox.session(python=DEFAULT_PYTHON_VERSION)
-def coverage(session: nox.Session) -> None:
+def tests(session: nox.Session) -> None:
     """Run unit tests with coverage and output to terminal."""
 
     session.install(".[test]")
