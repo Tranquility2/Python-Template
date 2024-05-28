@@ -53,7 +53,7 @@ def mypy_check(session: nox.Session) -> None:
 def build(session: nox.Session) -> None:
     """Build distribution files."""
 
-    session.install("build")
+    session.install("hatch")
     session.run("hatch", "build")
 
 

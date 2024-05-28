@@ -23,8 +23,20 @@ dynamic = ["version"]
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["black", "isort", "pylint", "mypy",  "bandit", "pre-commit"]
-test = ["nox", "pytest", "pytest-cov"]
+dev = [
+    "hatch",
+    "black",
+    "isort",
+    "pylint",
+    "mypy",
+    "bandit",
+    "pre-commit"
+]
+test = [
+    "nox",
+    "pytest",
+    "pytest-cov"
+]
 
 [project.urls]
 homepage = "https://github.com/author/module"
