@@ -9,9 +9,7 @@ MODULE_NAME = "module"
 TESTS_PATH = "tests"
 DEFAULT_PYTHON_VERSION = "3.9"
 VERBOSE = True
-
-PYTHON_MATRIX = ["3.9", "3.10", "3.11", "3.12"]
-
+SUPPORTED_PYTHON_VERSIONS = ["3.9", "3.10", "3.11", "3.12"]
 CLEANABLE_TARGETS = [
     "./dist",
     "./build",
@@ -27,17 +25,27 @@ CLEANABLE_TARGETS = [
 ]
 
 nox.options.sessions = [
-    "tests",
-    "mypy_check",
+    "tests_with_coverage",
+    "coverage_combine_and_report",
 ]
 
 
-@nox.session(python=DEFAULT_PYTHON_VERSION)
-def tests(session: nox.Session) -> None:
-    """Run unit tests with coverage and output to terminal."""
+@nox.session(python=SUPPORTED_PYTHON_VERSIONS)
+def tests_with_coverage(session: nox.Session) -> None:
+    """Run unit tests with coverage saved to partial file."""
 
     session.install(".[test]")
-    session.run("pytest", "--cov-report", "term-missing", f"--cov={MODULE_NAME}", TESTS_PATH)
+    session.run("coverage", "run", "-p", "-m", "pytest", TESTS_PATH)
+
+
+@nox.session(python=DEFAULT_PYTHON_VERSION)
+def coverage_combine_and_report(session: nox.Session) -> None:
+    """Combine all coverage files and generate a report."""
+
+    session.install(".[test]")
+    session.run("coverage", "combine")
+    session.run("coverage", "report")
+    session.run("coverage", "xml")
 
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
