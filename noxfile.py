@@ -8,7 +8,6 @@ import nox
 MODULE_NAME = "module"
 TESTS_PATH = "tests"
 DEFAULT_PYTHON_VERSION = "3.9"
-VERBOSE = True
 SUPPORTED_PYTHON_VERSIONS = ["3.9", "3.10", "3.11", "3.12"]
 CLEANABLE_TARGETS = [
     "./dist",
@@ -16,6 +15,7 @@ CLEANABLE_TARGETS = [
     "./.nox",
     "./.coverage",
     "./.coverage.*",
+    "./coverage.xml",
     "./coverage.json",
     "./**/.mypy_cache",
     "./**/.pytest_cache",
@@ -68,6 +68,7 @@ def build(session: nox.Session) -> None:
 @nox.session(python=False)
 def install(session: nox.Session) -> None:
     """Setup a development environment. Uses active venv if available, builds one if not."""
+
     session.run("python", "-m", "pip", "install", "-e", ".[dev,test]")
     session.run("pre-commit", "install")
 
@@ -75,6 +76,7 @@ def install(session: nox.Session) -> None:
 @nox.session(python=False)
 def clean(session: nox.Session) -> None:
     """Clean cache, .pyc, .pyo, and test/build artifact files from project."""
+
     count = 0
     for searchpath in CLEANABLE_TARGETS:
         for filepath in pathlib.Path(".").glob(searchpath):
