@@ -30,10 +30,10 @@ dev = [
     "pylint",
     "mypy",
     "bandit",
-    "pre-commit"
+    "pre-commit",
+    "nox"
 ]
 test = [
-    "nox",
     "pytest",
     "pytest-cov"
 ]
@@ -58,6 +58,8 @@ fail_under = 100
 
 [tool.black]
 line-length = 120
+exclude = "src/module/__about__.py"
+extend-exclude = ".nox"
 
 [tool.isort]
 line_length = 120
