@@ -74,6 +74,15 @@ def mypy(session: nox.Session) -> None:
     session.run("mypy", "-p", MODULE_NAME, "--no-incremental")
 
 
+@nox.session(python=DEFAULT_PYTHON_VERSION, reuse_venv=True)
+def check(session: Session) -> None:
+    """Run all checks."""
+
+    isort(session)
+    black(session)
+    mypy(session)
+
+
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def build(session: Session) -> None:
     """Build distribution files."""
