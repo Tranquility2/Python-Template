@@ -87,8 +87,8 @@ def check(session: Session) -> None:
 def build(session: Session) -> None:
     """Build distribution files."""
 
-    session.install("hatch")
-    session.run("hatch", "build")
+    session.install("build")
+    session.run("python", "-m", "build")
 
 
 @nox.session(python=False)

@@ -1,15 +1,18 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "module"
 requires-python = ">=3.9"
 description = "Project Description"
 license = { file = "LICENSE" }
-readme = {file = "README.md", content-type = "text/markdown"}
-authors = [ { email = "author@domain", name = "author" } ]
-maintainers = [ { email = "author@domain", name = "author" } ]
+authors = [
+    { email = "author@email.address", name = "author" }
+]
+maintainers = [
+    { email = "author@email.address", name = "author" }
+]
 keywords = []
 classifiers = [
     # https://pypi.org/classifiers/
@@ -24,7 +27,6 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = [
-    "hatch",
     "black",
     "isort",
     "pylint",
@@ -45,13 +47,13 @@ Repository = "https://github.com/author/module"
 Changelog = "https://github.com/author/module/blob/master/CHANGELOG.md"
 
 # [project.scripts]
-# intro-cli = "module.intro:main"
+# module = "module.main:run"
 
-[tool.hatch.version]
-path = "src/module/__about__.py"
+[tool.setuptools.dynamic]
+version = {file = "src/module/VERSION"}
 
-[tool.coverage.run]
-omit = ["__about__.py"]
+[tool.setuptools.package-data]
+"module_name" = ["py.typed"]
 
 [tool.coverage.report]
 fail_under = 100
