@@ -23,6 +23,7 @@ CLEANABLE_TARGETS = [
     "./**/__pycache__",
     "./**/*.pyc",
     "./**/*.pyo",
+    "./**/*.egg-info",
 ]
 
 nox.options.sessions = [
