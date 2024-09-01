@@ -14,3 +14,9 @@ This project uses [Nox](https://nox.thea.codes/en/stable/#), To install Nox with
 ```bash
 pipx install nox
 ```
+
+To reset git history:
+
+```bash
+git reset $(git commit-tree HEAD^{tree} -m "1st commit")
+```
