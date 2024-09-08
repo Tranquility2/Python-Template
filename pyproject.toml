@@ -22,23 +22,14 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
 ]
-dynamic = ["version"]
-dependencies = []
+dynamic = ["version", "dependencies", "optional-dependencies"]
 
-[project.optional-dependencies]
-dev = [
-    "black",
-    "isort",
-    "pylint",
-    "mypy",
-    "bandit",
-    "pre-commit",
-    "nox"
-]
-test = [
-    "pytest",
-    "pytest-cov"
-]
+[tool.setuptools.dynamic.dependencies]
+file = ["requirements/requirements.txt"]
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = { file = ["requirements/requirements-dev.txt"] }
+test = { file = ["requirements/requirements-test.txt"] }
 
 [project.urls]
 homepage = "https://github.com/author/module"
@@ -54,6 +45,14 @@ version = {file = "src/module/VERSION"}
 
 [tool.setuptools.package-data]
 "module_name" = ["py.typed"]
+
+[tool.pip-tools]
+quiet = true
+rebuild = true
+no-emit-index-url = true
+no-header = true
+strip-extras = true
+annotation-style = "line"
 
 [tool.coverage.report]
 fail_under = 100

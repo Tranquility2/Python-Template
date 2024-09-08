@@ -30,6 +30,11 @@ nox.options.sessions = [
     "tests_with_coverage",
     "coverage_combine_and_report",
 ]
+REQUIREMENTS = [
+    "requirements/requirements.txt",
+    "requirements/requirements-dev.txt",
+    "requirements/requirements-test.txt",
+]
 
 
 @nox.session(python=SUPPORTED_PYTHON_VERSIONS)
@@ -98,6 +103,24 @@ def install(session: Session) -> None:
 
     session.run("python", "-m", "pip", "install", "-e", ".[dev,test]")
     session.run("pre-commit", "install")
+
+
+@nox.session(python=False)
+def requirements(session: Session) -> None:
+    """Compile the project requirements."""
+
+    session.run("pip", "install", "pip-tools", silent=True)
+
+    for req_file in REQUIREMENTS:
+        session.run("pip-compile", "-o", req_file, f"{req_file.replace('.txt', '.in')}")
+
+
+@nox.session(python=False)
+def sync(session: Session) -> None:
+    """Sync the project requirements."""
+
+    session.run("pip", "install", "pip-tools", silent=True)
+    session.run("pip-sync", "requirements-dev.txt")
 
 
 @nox.session(python=False)

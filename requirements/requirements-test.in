@@ -1,0 +1,5 @@
+--constraint requirements.txt
+--constraint requirements-dev.txt
+
+pytest
+pytest-cov

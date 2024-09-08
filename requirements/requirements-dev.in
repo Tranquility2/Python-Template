@@ -1,0 +1,9 @@
+--constraint requirements.txt
+
+black
+isort
+pylint
+mypy
+bandit
+pre-commit
+nox
