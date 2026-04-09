@@ -73,7 +73,7 @@ tomlkit==0.13.2
     # via pylint
 typing-extensions==4.12.2
     # via mypy
-virtualenv==20.26.6
+virtualenv==20.36.1
     # via
     #   nox
     #   pre-commit
