@@ -4,7 +4,7 @@ astroid==3.2.4
     # via pylint
 bandit==1.7.9
     # via -r requirements-dev.in
-black==24.8.0
+black==26.3.1
     # via -r requirements-dev.in
 cfgv==3.4.0
     # via pre-commit
@@ -44,7 +44,7 @@ packaging==24.1
     # via
     #   black
     #   nox
-pathspec==0.12.1
+pathspec==1.0.4
     # via black
 pbr==6.1.0
     # via stevedore
@@ -59,6 +59,8 @@ pygments==2.18.0
     # via rich
 pylint==3.2.7
     # via -r requirements-dev.in
+pytokens==0.4.1
+    # via black
 pyyaml==6.0.2
     # via
     #   bandit
